@@ -34,28 +34,28 @@ public class Crypto {
     /**
      * 암호화 메소드
      * AES256 알고리즘으로 평문을 암호화 한 후 Base64인코딩으로 변형하여 리턴
-     * @param msg : 암호화할 평문
+     * @param plainTxt : 암호화할 평문
      */
-    public String encrypt(String msg)
+    public String encrypt(String plainTxt)
             throws GeneralSecurityException, UnsupportedEncodingException {
         Cipher c = Cipher.getInstance("AES/CBC/PKCS5Padding");
         c.init(Cipher.ENCRYPT_MODE, keySpec, new IvParameterSpec(iv.getBytes()));
 
-        byte[] encrypted = c.doFinal(msg.getBytes(StandardCharsets.UTF_8));
+        byte[] encrypted = c.doFinal(plainTxt.getBytes(StandardCharsets.UTF_8));
         return new String(Base64.encodeBase64(encrypted));
     }
 
     /**
      * 복호화 메소드
      * AES256 알고리즘으로 암호화된 암호문을 복호화하여 리턴
-     * @param msg : 복호화할 암호문
+     * @param cryptoTxt : 복호화할 암호문
      */
-    public String decrypt(String msg)
+    public String decrypt(String cryptoTxt)
         throws GeneralSecurityException, UnsupportedEncodingException {
         Cipher c = Cipher.getInstance("AES/CBC/PKCS5Padding");
         c.init(Cipher.DECRYPT_MODE, keySpec, new IvParameterSpec(iv.getBytes()));
 
-        byte[] byteStr = Base64.decodeBase64(msg.getBytes());
+        byte[] byteStr = Base64.decodeBase64(cryptoTxt.getBytes());
         return new String(c.doFinal(byteStr), StandardCharsets.UTF_8);
     }
 }

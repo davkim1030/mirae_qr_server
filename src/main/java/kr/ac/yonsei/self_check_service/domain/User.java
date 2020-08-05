@@ -1,7 +1,7 @@
 package kr.ac.yonsei.self_check_service.domain;
 
 
-import kr.ac.yonsei.self_check_service.api.QrGenerator;
+import kr.ac.yonsei.self_check_service.api.QrUtil;
 
 import java.security.NoSuchAlgorithmException;
 
@@ -25,7 +25,7 @@ public class User {
         this.keyNumber = keyNumber;
         this.userType = userType;
         try {
-            url = QrGenerator.nameHash(keyNumber);
+            url = QrUtil.nameHash(keyNumber);
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
