@@ -1,6 +1,7 @@
 package kr.ac.yonsei.self_check_service.repository;
 
 import kr.ac.yonsei.self_check_service.domain.Check;
+import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -9,6 +10,7 @@ import java.util.Optional;
 /**
  * Check 데이터 저장 구현체
  */
+@Repository
 public class MemoryCheckRepository implements CheckRepository{
     static ArrayList<Check> store = new ArrayList<>();  // 데이터 저장할 변수
 
