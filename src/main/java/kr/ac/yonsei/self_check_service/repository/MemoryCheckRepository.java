@@ -6,9 +6,11 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Optional;
 
+/**
+ * Check 데이터 저장 구현체
+ */
 public class MemoryCheckRepository implements CheckRepository{
-
-    static ArrayList<Check> store = new ArrayList<>();
+    static ArrayList<Check> store = new ArrayList<>();  // 데이터 저장할 변수
 
     @Override
     public Check save(Check check) {
@@ -35,6 +37,7 @@ public class MemoryCheckRepository implements CheckRepository{
         for (Check item : store) {
             flag = true;
             boolean[] tmp = item.getCheck();
+            // 항목 하나씩 검사해서 모두 같아야 추가
             for (int i = 0; i < tmp.length; i++) {
                 if (item.getCheck()[i] != tmp[i]) {
                     flag = false;

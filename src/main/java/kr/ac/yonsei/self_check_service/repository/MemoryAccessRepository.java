@@ -6,10 +6,13 @@ import org.springframework.stereotype.Repository;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
+/**
+ * Access 데이터 저장 구현체
+ */
 @Repository
 public class MemoryAccessRepository implements AccessRepository{
 
-    private static ArrayList<Access> store = new ArrayList<>();
+    private static ArrayList<Access> store = new ArrayList<>(); // 데이터 저장할 변수
 
     @Override
     public Access save(Access access) {
