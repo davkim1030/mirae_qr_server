@@ -7,6 +7,7 @@ import java.time.*;
  * 액세스 기록을 저장
  */
 public class Access {
+    // 건물 목록에 대한 enum
     public enum BuildingType {
         UNIV_CHURCH,                        // 00 대학 교회
         UNIV_HQ,                            // 01 대학 본부
@@ -38,7 +39,7 @@ public class Access {
         BUSINESS_INCUBATION_2,              // 27 제2 창업보육센터
         BUSINESS_INCUBATION_3,              // 28 제3 창업보육센터
         HAK_GOON_DAN                        // 29 학군단
-    }           // 학교 건물 목록
+    }                                       // 학교 건물 목록
 
     private LocalDateTime   dateTime;       // 출입 날짜, 시간
     private BuildingType    buildingType;   // 건물 종류

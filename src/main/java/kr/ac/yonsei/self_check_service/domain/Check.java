@@ -4,12 +4,12 @@ import java.time.*;
 
 /**
  * @author hyun-wookkim
- * 검진 데이터 클래스
+ * 자가 검진 데이터 클래스
  */
 public class Check {
-    private User user;
-    private LocalDate date;
-    private boolean[] check;
+    private User user;          // 검진한 사람
+    private LocalDate date;     // 검진한 날짜
+    private boolean[] check;    // 검진 문항에 대한 결
 
     // Constructor
     public Check(User user, LocalDate date, boolean[] check)
@@ -19,8 +19,7 @@ public class Check {
         this.check = check;
     }
 
-    // getter
-
+    // getter과
     public User getUser() {
         return user;
     }
