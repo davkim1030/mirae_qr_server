@@ -4,6 +4,8 @@ from json import JSONDecodeError
 
 from django.http import HttpResponseBadRequest, JsonResponse, HttpResponseNotFound
 from django.shortcuts import render, redirect
+from django.views.decorators.csrf import csrf_protect
+
 from .models import User
 from .models import Check
 from .apis import name_hash, check_qr
@@ -22,6 +24,19 @@ def select_language(request):
 
 def select_user_type(request):
     return render(request, 'selfcheck/select_user_type.html')
+
+
+@csrf_protect
+def user_check(request):
+    # TODO:연세포탈 로그인과 본인인증 API 로그인 진입점 설정 필요
+    data = json.loads(request.body)
+    if 'key_str' in data.keys():
+        key_str = data['key_str']
+        user = User.objects.filter(key_str=key_str)
+        if len(user) == 0:
+            User.objects.create(key_str=key_str, user_type=User.UserType.MEMBER, url_str=name_hash(key_str))  # TODO: user_type 설정 필요
+        return redirect(f'/selfcheck/{name_hash(key_str)}/')
+    return HttpResponseBadRequest()
 
 
 def selfcheck(request, key_hash):
