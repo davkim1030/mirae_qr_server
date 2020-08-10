@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko-kr">
+<head>
+    <meta charset="UTF-8">
+    <title>자가 검진</title>
+</head>
+<body>
+    <h1>자가 검진</h1>
+    <h1>{{ url_str }}</h1>
+    <form method="post" action="{% url 'handle_check_result' key_hash=url_str%}">
+    {% csrf_token %}
+        1. question 1<br>
+        <input type="radio" id="q11" name="q1" value="y" checked="checked">
+        <label for="q11">정상</label><br>
+        <input type="radio" id="q12" name="q1" value="n">
+        <label for="q12">이상</label><br>
+        2. question 2<br>
+        <input type="checkbox" id="q21" name="q21" checked="checked">
+        <label for="q21">정상</label><br>
+        <input type="checkbox" id="q22" name="q22">
+        <label for="q22">비정상1</label><br>
+        <input type="checkbox" id="q23" name="q23">
+        <label for="q23">비정상2</label><br>
+        <input type="checkbox" id="q24" name="q24">
+        <label for="q24">비정상3</label><br>
+        <input type="checkbox" id="q25" name="q25">
+        <label for="q25">비정상4</label><br>
+        <input type="checkbox" id="q26" name="q26">
+        <label for="q26">비정상5</label><br>
+        <input type="checkbox" id="q27" name="q27">
+        <label for="q27">비정상6</label><br>
+        <input type="checkbox" id="q28" name="q28">
+        <label for="q28">비정상7</label><br>
+        3. question 3<br>
+        <input type="radio" id="q31" name="q3" value="y" checked="checked">
+        <label for="q31">정상</label><br>
+        <input type="radio" id="q32" name="q3" value="n">
+        <label for="q32">이상</label><br>
+        4. question 4<br>
+        <input type="radio" id="q41" name="q4" value="y" checked="checked">
+        <label for="q41">정상</label><br>
+        <input type="radio" id="q42" name="q4" value="n">
+        <label for="q42">이상</label><br>
+        5. question 5<br>
+        <input type="radio" id="q51" name="q5" value="y" checked="checked">
+        <label for="q51">정상</label><br>
+        <input type="radio" id="q52" name="q5" value="n">
+        <label for="q52">이상</label><br>
+        <input type="submit" value="선택">
+    </form>
+</body>
+</html>
