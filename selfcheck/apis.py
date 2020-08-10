@@ -13,6 +13,9 @@ from selfcheck.models import User
 
 
 # 검사결과에서 비정상이 하나라도 있으면 False 모두0이면 True
+from yonseiSelfCheck.settings import STATIC_ROOT
+
+
 def accessable(check):
     return '1' not in check
 
@@ -21,7 +24,7 @@ def accessable(check):
 def create_qr(filename, msg):
     url = pyqrcode.create(msg)
     date_str = datetime.date.today().strftime("%Y%m%d")
-    qr_path = 'selfcheck/static/selfcheck/qrcode/' + date_str
+    qr_path = STATIC_ROOT + 'selfcheck/qrcode/' + date_str
     if not(os.path.isdir(qr_path)):
         os.makedirs(os.path.join(qr_path))
     url.png(qr_path + "/" + filename + '.png',
