@@ -2,20 +2,15 @@ import base64
 import datetime
 import hashlib
 import os
-import random
 
 import pyqrcode
 from Crypto import Random
 from Crypto.Cipher import AES
-
-
 from selfcheck.models import User
-
-
-# 검사결과에서 비정상이 하나라도 있으면 False 모두0이면 True
 from yonseiSelfCheck.settings import STATIC_ROOT
 
 
+# 검사결과에서 비정상이 하나라도 있으면 False 모두0이면 True
 def accessable(check):
     return '1' not in check
 
