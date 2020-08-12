@@ -24,7 +24,7 @@ def accessable(check):
 def create_qr(filename, msg):
     url = pyqrcode.create(msg)
     date_str = datetime.date.today().strftime("%Y%m%d")
-    qr_path = STATIC_ROOT + 'selfcheck/qrcode/' + date_str
+    qr_path = STATIC_ROOT + '/selfcheck/qrcode/' + date_str
     if not(os.path.isdir(qr_path)):
         os.makedirs(os.path.join(qr_path))
     url.png(qr_path + "/" + filename + '.png',
