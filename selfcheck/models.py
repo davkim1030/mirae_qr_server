@@ -14,7 +14,7 @@ class User(models.Model):
         choices=UserType.choices
     )
     url_str = models.CharField(max_length=100, null=False)
-    # TODO: 나중에 설계에 따라 언어 필드 추가 가능성 있음
+    name = models.CharField(max_length=100, null=False)
 
 
 class Access(models.Model):

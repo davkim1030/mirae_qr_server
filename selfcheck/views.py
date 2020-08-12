@@ -23,7 +23,7 @@ def user_check(request):
     # TODO:연세포탈 로그인과 본인인증 API 로그인 진입점 설정 필요
     data = request.COOKIES
     if 'memberId' in data.keys() and 'memberName' in data.keys():
-        key_str = data('memberId')
+        key_str = data.get('memberId')
         user = User.objects.filter(key_str=key_str)
         if len(user) == 0:
             User.objects.create(key_str=key_str, user_type=User.UserType.MEMBER, url_str=name_hash(key_str))  # TODO: user_type 설정 필요
