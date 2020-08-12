@@ -38,6 +38,10 @@ class Access(models.Model):
         SAN_HAK_GWAN = "SAN_HAK_GWAN", _("San_hak_gwan")
         HYEON_WOON_JAE = "HYEON_WOON_JAE", _("Hyeon_woon_jae")
 
+    class Way(models.TextChoices):
+        IN = "IN", _("In")
+        OUT = "OUT", _("Out")
+
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     date_time = models.DateTimeField(null=False)
     building_type = models.CharField(
@@ -45,6 +49,12 @@ class Access(models.Model):
         max_length=14,
         choices=BuildingType.choices
     )
+    way = models.CharField(
+        null=False,
+        max_length=3,
+        choices=Way.choices
+    )
+    success = models.BooleanField(null=False)
 
 
 class Check(models.Model):
