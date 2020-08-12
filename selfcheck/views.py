@@ -24,9 +24,10 @@ def user_check(request):
     data = request.COOKIES
     if 'memberId' in data.keys() and 'memberName' in data.keys():
         key_str = data.get('memberId')
+        name = data.get('memberName')
         user = User.objects.filter(key_str=key_str)
         if len(user) == 0:
-            User.objects.create(key_str=key_str, user_type=User.UserType.MEMBER, url_str=name_hash(key_str))  # TODO: user_type 설정 필요
+            User.objects.create(key_str=key_str, user_type=User.UserType.MEMBER, url_str=name_hash(key_str), name=name)
         return redirect(f'/selfcheck/{name_hash(key_str)}/')
     return HttpResponseBadRequest()
 
