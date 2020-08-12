@@ -14,14 +14,6 @@ from .apis import AESCipher
 from .apis import accessable
 
 
-def access_list(request):
-    return render(request, 'selfcheck/access_list.html')
-
-
-def select_language(request):
-    return render(request, 'selfcheck/select_language.html')
-
-
 def select_user_type(request):
     return render(request, 'selfcheck/select_user_type.html')
 
