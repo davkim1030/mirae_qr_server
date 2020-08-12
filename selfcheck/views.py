@@ -1,12 +1,12 @@
 import datetime
 import json
-from json import JSONDecodeError
+import logging
 
 from django.http import HttpResponseBadRequest, JsonResponse, HttpResponseNotFound
 from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_protect
 
-from .models import User
+from .models import User, Access
 from .models import Check
 from .apis import name_hash, check_qr
 from .apis import create_qr
@@ -21,9 +21,9 @@ def select_user_type(request):
 @csrf_protect
 def user_check(request):
     # TODO:연세포탈 로그인과 본인인증 API 로그인 진입점 설정 필요
-    data = json.loads(request.body)
-    if 'key_str' in data.keys():
-        key_str = data['key_str']
+    data = request.COOKIES
+    if 'memberId' in data.keys() and 'memberName' in data.keys():
+        key_str = data('memberId')
         user = User.objects.filter(key_str=key_str)
         if len(user) == 0:
             User.objects.create(key_str=key_str, user_type=User.UserType.MEMBER, url_str=name_hash(key_str))  # TODO: user_type 설정 필요
@@ -86,19 +86,27 @@ def result(request, key_hash):
 
 # qr코드를 읽은 결과를 판별해주는 곳, 예외처리 필요
 def validate_qr(request):
-    if request.method == "GET":
+    if request.method == "POST":
         try:
             data = json.loads(request.body)
-        except Exception:
-            return HttpResponseBadRequest
-        if data['msg'] is None:
-            return JsonResponse({'result': False})
-        plain = str()
-        result = bool()
-        try:
+            if 'msg' not in data.keys() or\
+                    'building_type' not in data.keys() or\
+                    'way' not in data.keys():
+                raise Exception("Necessary data not received")
             plain = AESCipher().decrypt_str(data['msg'])
             result = check_qr(plain)
+            building_type = Access.BuildingType[data['building_type']]
+            way = Access.Way[data['way']]
+            user = User.objects.filter(key_str=plain[8:])
+            if len(user) == 0:
+                raise Exception("No such user on db")
+            user = user[0]
+            Access.objects.create(user=user,
+                                  date_time=datetime.datetime.now(),
+                                  building_type=building_type,
+                                  way=way,
+                                  success=result)
+            return JsonResponse({'result': result})
         except Exception:
             return JsonResponse({'result': False})
-        return JsonResponse({'result': result})
-    return HttpResponseBadRequest
+    return HttpResponseBadRequest()
