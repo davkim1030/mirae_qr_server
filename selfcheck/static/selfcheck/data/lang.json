@@ -22,7 +22,13 @@
     "A_N": "No",
     "Num": "Num",
     "QnA": "Question & Answer",
-    "Done": "Done"
+    "Done": "Done",
+    "pos_title": "<Access QR Code>",
+    "pos": "As a result of the self-diagnosis questionnaire for the prevention of COVID-19, there are no items corresponding to the suspected symptoms. It's possible to attend school.",
+    "neg_title": "<Suspension Notice for On-campus Classes>",
+    "neg1": "1. Since your child currently requires protection inside your home due to his/her health condition, please prohibit him/her from returning to school until further notice for the healthy school life of our children.",
+    "neg2": "2. Even if the child does not return to school, he/she will be considered to have attended. Please provide protection to ensure that the student observes the precautions at home and takes sufficient rest until his/her fever and respiratory symptoms are gone (cough, sore throat, etc.).",
+    "neg3": "3. If high fever of above 38℃ persists, or if symptoms worsen, please contact the call center (☏ 1339, area code +120) or the relevant local health center and follow the instructions such as visiting a screening center and receiving medical treatment."
   },
   "ko": {
     "title": "학생건강 자가진단",
@@ -47,7 +53,13 @@
     "A_N": "아니오",
     "Num": "문항",
     "QnA": "질문 및 응답",
-    "Done": "완료"
+    "Done": "완료",
+    "pos_title": "<출입용 QR 코드>",
+    "pos": "코로나19 예방을 위한 자가진단 설문결과 의심 증상에 해당되는 항목이 없어 등교가 가능함을 안내드립니다.",
+    "neg_title": "<등교 중지 안내문>",
+    "neg1": "1. 현재 건강상태는 가정 내에서 자가경리가 필요한 상황이므로 건강한 학교생활을 위해 잠시 등교하지 않도록 협조하여 주시기 바랍니다.",
+    "neg2": "2. 등교하지 않아도 학교에서는 출석으로 인정합니다. 학생의 발열, 호흡기증상(기침, 목아픔 등)이 없어질 때까지 가정에서 예방수칙을 준수하고 충분한 휴식을 취할 수 있도록 보호해 주시기 바랍니다.",
+    "neg3": "3. 38℃이상의 고열이 지속되거나 증상이 심해질 경우 교내콜센터(☏ 033-760-0119) 또는 건강관리센터를 방문 후 진료받기 등 안내에 따라 주시기 바랍니다."
   },
   "zh": {
     "title": "学生健康状态居家诊断问卷作答内容",
@@ -72,6 +84,12 @@
     "A_N": "没有",
     "Num": "数",
     "QnA": "提问及回答",
-    "Done": "完"
+    "Done": "完",
+    "pos_title": "<访问代码>",
+    "pos": "为预防新型冠状病毒肺炎而实施的居家诊断问卷结果显示，无疑似症状相应项目，因此可返校，特此通知。",
+    "neg_title": "<停止返校通知>",
+    "neg1": "1. 目前，子女的健康状态处于需要在家进行保护的状况，为确保孩子们的健康学校生活，请暂时不要返校，敬请配合。",
+    "neg2": "2. 即使不返校，学校也将认可为出勤。截止到学生的发热、呼吸系统症状（咳嗽、喉咙痛等）消失时为止，请对孩子予以保护，以使其在家遵守预防守则并进行充分休息。",
+    "neg3": "3. 持续38℃以上高烧或症状变严重时，请咨询呼叫中心（☏1339、区号+120）或辖区内保健所，并到访筛查诊疗所后遵从接受诊疗等指示。"
   }
 }
