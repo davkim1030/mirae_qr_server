@@ -9,7 +9,7 @@
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <link href="{% static '/static/selfcheck/css/selfcheck.css' %}" rel="stylesheet" />
+  <link href="{% static '/selfcheck/css/selfcheck.css' %}" rel="stylesheet" />
 
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
@@ -51,8 +51,8 @@
         </p>
       </div>
       <div class="card table-responsive" style="text-align: center;">
-          {% csrf_token %}
           <form method="post" action="{% url 'handle_check_result' key_hash=url_str %}">
+          {% csrf_token %}
         <table class="table" style="text-align: left;">
           <colgroup>
             <col style="width: 15%;" />
@@ -160,9 +160,9 @@
             <tr>
               <td>
                 <div class="radioList">
-                  <label><input id="a51" type="radio" name="q5" value="Y" checked="checked" />
+                  <label><input id="a51" type="radio" name="q5" value="y" checked="checked" />
                     <span id="A_N" data-lang="A_N">아니오</span></label>
-                  <label><input id="a52" type="radio" name="q5" value="N" />
+                  <label><input id="a52" type="radio" name="q5" value="n" />
                     <span id="A_Y" data-lang="A_Y">예</span></label>
                 </div>
               </td>
@@ -323,7 +323,7 @@
   <!-- AdminLTE App -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.0.5/js/adminlte.min.js"></script>
 
-  <script type="text/javascript" src="{% static '/static/selfhceck/js/checkbox.js' %}"></script>
+  <script type="text/javascript" src="{% static '/selfcheck/js/checkbox.js' %}"></script>
 </body>
 
 </html>
