@@ -44,6 +44,7 @@ def selfcheck(request, key_hash):
 
 def handle_check_result(request, key_hash):
     if request.method == "POST":
+        print(request.POST)
         user = User.objects.filter(url_str=key_hash)
         if len(user) == 0:
             return HttpResponseNotFound()
@@ -53,11 +54,11 @@ def handle_check_result(request, key_hash):
             data = request.POST
             check_str = ""
             check_str = check_str + '0' if data['q1'] == 'y' else '1'
-            if 'q21' in data.keys() and data['q21'] == 'on':
+            if 'q2_n' in data.keys() and data['q2_n'] == 'y':
                 check_str += "0" * 7
             else:
                 for i in range(2, 9):
-                    check_str += ('1' if 'q2' + str(i) in data.keys() and data['q2' + str(i)] == 'on' else '0')
+                    check_str += ('1' if 'q2' + str(i) in data['q2'] else '0')
             check_str += '0' if data['q3'] == 'y' else '1'
             check_str += '0' if data['q4'] == 'y' else '1'
             check_str += '0' if data['q5'] == 'y' else '1'

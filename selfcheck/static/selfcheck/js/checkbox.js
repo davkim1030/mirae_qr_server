@@ -1,47 +1,45 @@
 function allunCheckFunc( obj ) {
-    $("[name=Q2]").prop("checked", false );
-
-    if($("[name=Q2]:checked").length==0){
-        $("[name=Q2_n]").prop("checked", true );
-    }
+    q2List = document.getElementsByName("q2")
+    qn = document.getElementsByName("q2_n")[0]
+    q2List.forEach(e => {
+        e.checked = false
+        e.setAttribute("checked", "")
+    })
+    qn.checked = true
+    qn.setAttribute("checked", "checked")
 }
 
-/* 체크박스 체크시 전체선택 체크 여부 */
 function oneCheckFunc( obj )
 {
-var allObj = $("[name=Q2_n]");
-var objName = $(obj).attr("name");
+    var allObj = document.getElementsByName("q2_n")[0]
+    var checkList = document.getElementsByName("q2")
+    var checkCnt = 0
 
-if( $(obj).prop("checked") )
-{
-    checkBoxLength = $("[name="+ objName +"]").length;
-    checkedLength = $("[name="+ objName +"]:checked").length;
-
-    if( checkBoxLength == checkedLength ) {
-        allObj.prop("checked", false);
+    if (!obj.checked) {
+        for (let i = 0; i < checkList.length; i++)
+            if (checkList[i])
+                checkCnt++
+        if (checkCnt === 1){
+            allObj.checked = true
+            allObj.setAttribute("checked", "checked")
+        }
+        obj.checked = false
+        obj.setAttribute("checked", "")
+    } else {
+        if (allObj.checked){
+            allObj.checked = false
+            allObj.setAttribute("checked", "")
+        }
+        obj.checked = true
+        obj.setAttribute("checked", "checked")
+        console.log(obj)
     }
-     else {
-        allObj.prop("checked", false);
-    }
-}
-else
-{
-    allObj.prop("checked", false);
 }
 
-if($("[name=Q2]:checked").length==0){
-    allObj.prop("checked", true);
-}
-
-}
-
-$(function(){
-$("[name=Q2_n]").click(function(){
-    allunCheckFunc( this );
-});
-$("[name=Q2]").each(function(){
-    $(this).click(function(){
-        oneCheckFunc( $(this) );
-    });
-});
-});
+document.getElementsByName("q2_n")[0].addEventListener(
+    "click", e => { allunCheckFunc(e) }
+    )
+document.getElementsByName("q2").forEach(e => {
+        e.addEventListener("click", obj => {
+            oneCheckFunc(e) })
+    })
