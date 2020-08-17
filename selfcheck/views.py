@@ -15,7 +15,7 @@ from .apis import accessable
 
 
 def select_user_type(request):
-    return render(request, 'selfcheck/select_user_type.html')
+    return render(request, 'selfcheck/main.html')
 
 
 @csrf_protect

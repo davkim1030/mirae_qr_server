@@ -1,0 +1,14 @@
+html,
+body {
+  width: 100%;
+}
+
+.result_page {
+  margin: 2em;
+  border-width: 1pt;
+  text-align: center;
+}
+
+.btn_top_right {
+  text-align: right;
+}

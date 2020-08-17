@@ -1,0 +1,32 @@
+h2 {
+  padding: 1em;
+}
+
+p {
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+}
+
+label {
+  padding-right: 5pt;
+}
+
+table thead {
+  text-align: center;
+}
+
+table tbody tr td {
+  font-size: 12pt;
+}
+
+.Q_Num {
+  text-align: center;
+}
+
+.A_style {
+  padding: 0.5em;
+}
+
+.btn_top_right {
+  text-align: right;
+}
