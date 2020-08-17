@@ -1,17 +1,134 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="ko-kr">
-<head>
-    <meta charset="UTF-8">
-    <title>검진 결과</title>
-</head>
-<body>
-    <h1>검진 결과</h1>
-    {% if result == True %}
-        <img src="{% static url %}">
-    {% else %}
-        <p>False</p>
-    {% endif %}
+<html lang="ko">
 
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <title>문진 결과</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link href="{% static '/selfcheck/css/selfcheck.css' %}" rel="stylesheet" />
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" />
+    <!-- icheck bootstrap -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/icheck-bootstrap/3.0.1/icheck-bootstrap.min.css" />
+    <!-- Theme style -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.0.5/css/adminlte.min.css" />
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet" />
+</head>
+
+<body class="hold-transition">
+    <div class="Check_page card-body">
+        <div name="LanguageButton" class="btn_top_right">
+            <button id="btn-ko" class="btn btn-primary">한국어</button>
+            <button id="btn-en" class="btn btn-primary">English</button>
+            <button id="btn-zh" class="btn btn-primary ">中文</button>
+        </div>
+        <div class="card table-responsive" style="align-items: center;">
+            {% if result == True %}
+                <h2 id="pos_title" data-lang="pos_title"></h2>
+                <img src="{% static url %}" style="max-width: 500px; max-height: 500px;">
+                <p id="pos" data-lang="pos"></p>
+            {% else %}
+                <h2 id="neg_title" data-lang="neg_title"></h2>
+                <p id="neg1" data-lang="neg1"></p>
+                <p id="neg2" data-lang="neg2"></p>
+                <p id="neg3" data-lang="neg3"></p>
+            {% endif %}
+        </div>
+    </div>
+    <span id="locale"></span>
+
+    <script>
+        // 언어별 JSON 파일 (간략화)
+        const lang = {
+            en: {
+                "pos_title": "<Access QR Code>",
+                "pos": "As a result of the self-diagnosis questionnaire for the prevention of COVID-19, there are no items corresponding to the suspected symptoms. It's possible to attend school.",
+                "neg_title": "<Suspension Notice for On-campus Classes>",
+                "neg1": "1. Since your child currently requires protection inside your home due to his/her health condition, please prohibit him/her from returning to school until further notice for the healthy school life of our children.",
+                "neg2": "2. Even if the child does not return to school, he/she will be considered to have attended. Please provide protection to ensure that the student observes the precautions at home and takes sufficient rest until his/her fever and respiratory symptoms are gone (cough, sore throat, etc.).",
+                "neg3": "3. If high fever of above 38℃ persists, or if symptoms worsen, please contact the call center (☏ 1339, area code +120) or the relevant local health center and follow the instructions such as visiting a screening center and receiving medical treatment."
+            },
+            ko: {
+                "pos_title": "<출입용 QR 코드>",
+                "pos": "코로나19 예방을 위한 자가진단 설문결과 의심 증상에 해당되는 항목이 없어 등교가 가능함을 안내드립니다.",
+                "neg_title": "<등교 중지 안내문>",
+                "neg1": "1. 현재 건강상태는 가정 내에서 자가경리가 필요한 상황이므로 건강한 학교생활을 위해 잠시 등교하지 않도록 협조하여 주시기 바랍니다.",
+                "neg2": "2. 등교하지 않아도 학교에서는 출석으로 인정합니다. 학생의 발열, 호흡기증상(기침, 목아픔 등)이 없어질 때까지 가정에서 예방수칙을 준수하고 충분한 휴식을 취할 수 있도록 보호해 주시기 바랍니다.",
+                "neg3": "3. 38℃이상의 고열이 지속되거나 증상이 심해질 경우 교내콜센터(☏ 033-760-0119) 또는 건강관리센터를 방문 후 진료받기 등 안내에 따라 주시기 바랍니다."
+            },
+            zh: {
+                "pos_title": "<访问代码>",
+                "pos": "为预防新型冠状病毒肺炎而实施的居家诊断问卷结果显示，无疑似症状相应项目，因此可返校，特此通知。",
+                "neg_title": "<停止返校通知>",
+                "neg1": "1. 目前，子女的健康状态处于需要在家进行保护的状况，为确保孩子们的健康学校生活，请暂时不要返校，敬请配合。",
+                "neg2": "2. 即使不返校，学校也将认可为出勤。截止到学生的发热、呼吸系统症状（咳嗽、喉咙痛等）消失时为止，请对孩子予以保护，以使其在家遵守预防守则并进行充分休息。",
+                "neg3": "3. 持续38℃以上高烧或症状变严重时，请咨询呼叫中心（☏1339、区号+120）或辖区内保健所，并到访筛查诊疗所后遵从接受诊疗等指示。"
+            }
+        };
+
+        // ** 현재 브라우저의 언어 가져오기 **
+        function getLanguage() {
+            return navigator.language || navigator.userLanguage;
+        }
+
+        // 언어별 적용
+        function init(localeStr) {
+            document.getElementById("locale").textContent = localeStr;
+        }
+
+        // 초기 작업
+        const currentLang = getLanguage();
+        init(currentLang);
+        render(currentLang.substr(0, 2));
+
+        // 언어별 렌더링
+        function render(locale) {
+            const $lang = document.querySelectorAll("[data-lang]");
+            $lang.forEach((el) => {
+                const code = el.dataset.lang;
+                el.textContent = lang[locale][code];
+            });
+        }
+
+        var setCookie = function (name, value, exp) {
+            var date = new Date();
+            date.setTime(date.getTime() + exp * 24 * 60 * 60 * 1000);
+            document.cookie = name + '=' + value + ';expires=' + date.toUTCString() + ';path=/';
+        };
+
+        // 버튼 이벤트
+        document.getElementById("btn-en").addEventListener("click", (e) => {
+            render("en");
+            setCookie("lang", "en", 1);
+        });
+        document.getElementById("btn-ko").addEventListener("click", (e) => {
+            render("ko");
+            setCookie("lang", "ko", 1);
+        });
+        document.getElementById("btn-zh").addEventListener("click", (e) => {
+            render("zh");
+            setCookie("lang", "zh", 1);
+        });
+
+
+</script>
+    <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.1/js/bootstrap.bundle.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.0.5/js/adminlte.min.js"></script>
+
+    <script type="text/javascript" src="{% static '/selfcheck/js/checkbox.js' %}"></script>
 </body>
+
 </html>
