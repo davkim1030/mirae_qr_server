@@ -34,7 +34,7 @@
         <div class="card table-responsive" style="align-items: center;">
             {% if result == True %}
                 <h2 id="pos_title" data-lang="pos_title"></h2>
-                <img src="{% static url %}" style="max-width: 500px; max-height: 500px;">
+                <img src="{% static url %}" style="width: -webkit-fill-available; max-width: 500px; max-height: 500px;">
                 <p id="pos" data-lang="pos"></p>
             {% else %}
                 <h2 id="neg_title" data-lang="neg_title"></h2>

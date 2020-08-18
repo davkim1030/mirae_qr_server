@@ -122,7 +122,7 @@ function init(localeStr) {
 
 // 초기 작업
 const currentLang = getLanguage();
-init(currentLang);
+// init(currentLang);
 render(currentLang.substr(0, 2));
 
 // 언어별 렌더링
