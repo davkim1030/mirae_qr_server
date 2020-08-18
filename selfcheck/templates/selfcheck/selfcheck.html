@@ -2,188 +2,188 @@
 <!DOCTYPE html>
 <html lang="ko">
 
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-  <title>문진 시작</title>
-  <!-- Tell the browser to be responsive to screen width -->
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+        <title>문진 시작</title>
+        <!-- Tell the browser to be responsive to screen width -->
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <link href="{% static '/selfcheck/css/selfcheck.css' %}" rel="stylesheet" />
+        <link href="{% static '/selfcheck/css/selfcheck.css' %}" rel="stylesheet" />
 
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
-  <!-- Ionicons -->
-  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" />
-  <!-- icheck bootstrap -->
-  <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/icheck-bootstrap/3.0.1/icheck-bootstrap.min.css" />
-  <!-- Theme style -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.0.5/css/adminlte.min.css" />
-  <!-- Google Font: Source Sans Pro -->
-  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet" />
-</head>
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
+        <!-- Ionicons -->
+        <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" />
+        <!-- icheck bootstrap -->
+        <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/icheck-bootstrap/3.0.1/icheck-bootstrap.min.css" />
+        <!-- Theme style -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.0.5/css/adminlte.min.css" />
+        <!-- Google Font: Source Sans Pro -->
+        <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet" />
+    </head>
 
-<body class="hold-transition">
-  <div class="Check_page card-body">
-    <div name="LanguageButton" class="btn_top_right">
-      <button id="btn-ko" class="btn btn-primary">한국어</button>
-      <button id="btn-en" class="btn btn-primary">English</button>
-      <button id="btn-zh" class="btn btn-primary ">中文</button>
-    </div>
-    <div name="학생건강 자가진단 테이블" class="card">
-      <div name="Guidance">
-        <h2 id="title" data-lang="title" style="text-align: center;">
-          학생건강 자가진단
-        </h2>
-        <p id="statement_0" data-lang="statement_0">
-          이 설문지는 코로나19 감염예방을 위한 학생의 건강 상태를 확인하는
-          내용입니다.
-        </p>
-        <p id="statement_1" data-lang="statement_1">
-          설문에 성실하게 응답하여 주시기 바랍니다.
-        </p>
-        <p id="warnimg" data-lang="warnimg" style="color: red;">
-          만약 답변을 허위로 작성할 경우 [감염병의 예방 및 관리에 관한 법률]
-          제18조 3항 및 제79조 1항에 의하여 처벌 받을 수 있으며, [연세대학교
-          미래캠퍼스 학생상벌에 관한 시행세칙] 제5조 4항에 의거하여 중징계를
-          받을 수 있음을 알려드립니다.
-        </p>
-      </div>
-      <div class="card table-responsive" style="text-align: center;">
-          <form method="post" action="{% url 'handle_check_result' key_hash=url_str %}">
-          {% csrf_token %}
-        <table class="table" style="text-align: left;">
-          <colgroup>
-            <col style="width: 15%;" />
-            <col style="width: 85%;" />
-          </colgroup>
-          <thead>
-            <tr>
-              <th id="Num" data-lang="Num">문항</th>
-              <th id="QnA" data-lang="QnA">질문 및 응답</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="Q_Num" rowspan="2" style="vertical-align: middle;">1</td>
-              <td id="Q1" data-lang="Q1">
-                몸에 열이 있나요?
-              </td>
-            <tr>
-              <td>
-                <div class="radioList">
-                  <label><input id="a11" type="radio" name="q1" value="y" checked="checked" />
-                    <span id="A1_0" data-lang="A1_0">37.5℃미만</span>
-                  </label>
-                  <label><input id="a12" type="radio" name="q1" value="n" />
-                    <span id="A1_1" data-lang="A1_1">
-                      37.5℃이상 및 발열감
-                    </span>
-                  </label>
+    <body class="hold-transition">
+        <div class="Check_page card-body">
+            <div name="LanguageButton" class="btn_top_right">
+                <button id="btn-ko" class="btn btn-primary">한국어</button>
+                <button id="btn-en" class="btn btn-primary">English</button>
+                <button id="btn-zh" class="btn btn-primary ">中文</button>
+            </div>
+            <div name="학생건강 자가진단 테이블" class="card">
+                <div name="Guidance">
+                    <h2 id="title" data-lang="title" style="text-align: center;">
+                        학생건강 자가진단
+                    </h2>
+                    <p id="statement_0" data-lang="statement_0">
+                        이 설문지는 코로나19 감염예방을 위한 학생의 건강 상태를 확인하는
+                        내용입니다.
+                    </p>
+                    <p id="statement_1" data-lang="statement_1">
+                        설문에 성실하게 응답하여 주시기 바랍니다.
+                    </p>
+                    <p id="warnimg" data-lang="warnimg" style="color: red;">
+                        만약 답변을 허위로 작성할 경우 [감염병의 예방 및 관리에 관한 법률]
+                        제18조 3항 및 제79조 1항에 의하여 처벌 받을 수 있으며, [연세대학교
+                        미래캠퍼스 학생상벌에 관한 시행세칙] 제5조 4항에 의거하여 중징계를
+                        받을 수 있음을 알려드립니다.
+                    </p>
                 </div>
-              </td>
-            </tr>
-            </tr>
-            <tr>
-              <td class="Q_Num" rowspan="2" style="vertical-align: middle;">2</td>
-              <td id="Q2" data-lang="Q2" class="al">
-                코로나19가 의심되는 증상이 있나요?<br />(해당사항 모두
-                선택)<br />
-                단, 기저질환 등으로 코로나19와 관계없이 평소에 다음 증상이
-                계속되는 경우는 제외
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div class="checkbox-inline">
-                  <label><input id="a21" type="checkbox" name="q2_n" value="y" checked="checked" />
-                    <span id="A_N" data-lang="A_N">아니오</span></label>
-                  <label><input id="a22" type="checkbox" name="q2" value="q22" />
-                    <span id="A2_0" data-lang="A2_0">기침</span></label>
-                  <label><input id="a23" type="checkbox" name="q2" value="q23" />
-                    <span id="A2_1" data-lang="A2_1">호흡곤란</span></label>
-                  <label><input id="a24" type="checkbox" name="q2" value="q24" />
-                    <span id="A2_2" data-lang="A2_2">오한</span></label>
-                  <label><input id="a25" type="checkbox" name="q2" value="q25" />
-                    <span id="A2_3" data-lang="A2_3">근육통</span></label>
-                  <label><input id="a26" type="checkbox" name="q2" value="q26" />
-                    <span id="A2_4" data-lang="A2_4">두통</span></label>
-                  <label><input id="a27" type="checkbox" name="q2" value="q27" />
-                    <span id="A2_5" data-lang="A2_5">인후통</span></label>
-                  <label><input id="a28" type="checkbox" name="q2" value="q28" />
-                    <span id="A2_6" data-lang="A2_6">후각, 미각 소실</span></label>
+                <div class="card table-responsive" style="text-align: center;">
+                    <form id="selfcheck" method="post" action="{% url 'handle_check_result' key_hash=url_str %}">
+                        {% csrf_token %}
+                        <table class="table" style="text-align: left;">
+                            <colgroup>
+                                <col style="width: 15%;" />
+                                <col style="width: 85%;" />
+                            </colgroup>
+                            <thead>
+                                <tr>
+                                    <th id="Num" data-lang="Num">문항</th>
+                                    <th id="QnA" data-lang="QnA">질문 및 응답</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="Q_Num" rowspan="2" style="vertical-align: middle;">1</td>
+                                    <td id="Q1" data-lang="Q1">
+                                        몸에 열이 있나요?
+                                    </td>
+                                    <tr>
+                                        <td>
+                                            <div class="radioList">
+                                                <label><input id="a11" type="radio" name="q1" value="y" checked="checked" />
+                                                    <span id="A1_0" data-lang="A1_0">37.5℃미만</span>
+                                                </label>
+                                                <label><input id="a12" type="radio" name="q1" value="n" />
+                                                    <span id="A1_1" data-lang="A1_1">
+                                                        37.5℃이상 및 발열감
+                                                    </span>
+                                                </label>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tr>
+                                <tr>
+                                    <td class="Q_Num" rowspan="2" style="vertical-align: middle;">2</td>
+                                    <td id="Q2" data-lang="Q2" class="al">
+                                        코로나19가 의심되는 증상이 있나요?<br />(해당사항 모두
+                                        선택)<br />
+                                        단, 기저질환 등으로 코로나19와 관계없이 평소에 다음 증상이
+                                        계속되는 경우는 제외
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="checkbox-inline">
+                                            <label><input id="a21" type="checkbox" name="q2_n" value="y" checked="checked" />
+                                                <span id="A_N" data-lang="A_N">아니오</span></label>
+                                            <label><input id="a22" type="checkbox" name="q2" value="q22" />
+                                                <span id="A2_0" data-lang="A2_0">기침</span></label>
+                                            <label><input id="a23" type="checkbox" name="q2" value="q23" />
+                                                <span id="A2_1" data-lang="A2_1">호흡곤란</span></label>
+                                            <label><input id="a24" type="checkbox" name="q2" value="q24" />
+                                                <span id="A2_2" data-lang="A2_2">오한</span></label>
+                                            <label><input id="a25" type="checkbox" name="q2" value="q25" />
+                                                <span id="A2_3" data-lang="A2_3">근육통</span></label>
+                                            <label><input id="a26" type="checkbox" name="q2" value="q26" />
+                                                <span id="A2_4" data-lang="A2_4">두통</span></label>
+                                            <label><input id="a27" type="checkbox" name="q2" value="q27" />
+                                                <span id="A2_5" data-lang="A2_5">인후통</span></label>
+                                            <label><input id="a28" type="checkbox" name="q2" value="q28" />
+                                                <span id="A2_6" data-lang="A2_6">후각, 미각 소실</span></label>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="Q_Num" rowspan="2" style="vertical-align: middle;">3</td>
+                                    <td id="Q3" data-lang="Q3" class="al">
+                                        학생이 최근(14일 이내) 해외여행을 다녀온 사실이 있나요?
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="radioList">
+                                            <label><input id="a31" type="radio" name="q3" value="y" checked="checked" />
+                                                <span id="A_N" data-lang="A_N">아니오</span></label>
+                                            <label><input id="a32" type="radio" name="q3" value="n" />
+                                                <span id="A_Y" data-lang="A_Y">예</span></label>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="Q_Num" rowspan="2" style="vertical-align: middle;">4</td>
+                                    <td id="Q4" data-lang="Q4" class="al">
+                                        동거 가족 중 최근(14일 이내) 해외여행을 다녀온 사실이
+                                        있나요?<br />
+                                        (단, 국제선 항공기 및 선박 승무원 등 직업 특성상 매번 해외
+                                        입출국하고 의심 증상이 없는 경우는 제외)
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="radioList">
+                                            <label><input id="a41" type="radio" name="q4" value="y" checked="checked" />
+                                                <span id="A_N" data-lang="A_N">아니오</span></label>
+                                            <label><input id="a42" type="radio" name="q4" value="n" />
+                                                <span id="A_Y" data-lang="A_Y">예</span></label>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="Q_Num" rowspan="2" style="vertical-align: middle;">5</td>
+                                    <td id="Q5" data-lang="Q5" class="al">
+                                        동거 가족 중 현재 자가격리 중인 가족이 있나요?
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="radioList">
+                                            <label><input id="a51" type="radio" name="q5" value="y" checked="checked" />
+                                                <span id="A_N" data-lang="A_N">아니오</span></label>
+                                            <label><input id="a52" type="radio" name="q5" value="n" />
+                                                <span id="A_Y" data-lang="A_Y">예</span></label>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </form>
+                    <button type="submit" id="Done" data-lang="Done" class="btn btn-primary" style="text-align: center;" form="selfcheck">완료</button>
                 </div>
-              </td>
-            </tr>
-            <tr>
-              <td class="Q_Num" rowspan="2" style="vertical-align: middle;">3</td>
-              <td id="Q3" data-lang="Q3" class="al">
-                학생이 최근(14일 이내) 해외여행을 다녀온 사실이 있나요?
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div class="radioList">
-                  <label><input id="a31" type="radio" name="q3" value="y" checked="checked" />
-                    <span id="A_N" data-lang="A_N">아니오</span></label>
-                  <label><input id="a32" type="radio" name="q3" value="n" />
-                    <span id="A_Y" data-lang="A_Y">예</span></label>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td class="Q_Num" rowspan="2" style="vertical-align: middle;">4</td>
-              <td id="Q4" data-lang="Q4" class="al">
-                동거 가족 중 최근(14일 이내) 해외여행을 다녀온 사실이
-                있나요?<br />
-                (단, 국제선 항공기 및 선박 승무원 등 직업 특성상 매번 해외
-                입출국하고 의심 증상이 없는 경우는 제외)
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div class="radioList">
-                  <label><input id="a41" type="radio" name="q4" value="y" checked="checked" />
-                    <span id="A_N" data-lang="A_N">아니오</span></label>
-                  <label><input id="a42" type="radio" name="q4" value="n" />
-                    <span id="A_Y" data-lang="A_Y">예</span></label>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td class="Q_Num" rowspan="2" style="vertical-align: middle;">5</td>
-              <td id="Q5" data-lang="Q5" class="al">
-                동거 가족 중 현재 자가격리 중인 가족이 있나요?
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div class="radioList">
-                  <label><input id="a51" type="radio" name="q5" value="y" checked="checked" />
-                    <span id="A_N" data-lang="A_N">아니오</span></label>
-                  <label><input id="a52" type="radio" name="q5" value="n" />
-                    <span id="A_Y" data-lang="A_Y">예</span></label>
-                </div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <input type="submit" id="Done" data-lang="Done" value="완료" class="btn btn-primary" style="text-align: center;">
-            </form>
-      </div>
-    </div>
-  </div>
+            </div>
+        </div>
 
-  <!-- jQuery -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <!-- Bootstrap 4 -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.1/js/bootstrap.bundle.min.js"></script>
-  <!-- AdminLTE App -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.0.5/js/adminlte.min.js"></script>
+        <!-- jQuery -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <!-- Bootstrap 4 -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.1/js/bootstrap.bundle.min.js"></script>
+        <!-- AdminLTE App -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.0.5/js/adminlte.min.js"></script>
 
-  <script type="text/javascript" src="{% static '/selfcheck/js/checkbox.js' %}"></script>
-  <script type="text/javascript" src="{% static '/selfcheck/js/selfcheck.js' %}"></script>
-</body>
+        <script type="text/javascript" src="{% static '/selfcheck/js/checkbox.js' %}"></script>
+        <script type="text/javascript" src="{% static '/selfcheck/js/selfcheck.js' %}"></script>
+    </body>
 
 </html>
